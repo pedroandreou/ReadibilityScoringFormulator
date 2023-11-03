@@ -1,6 +1,8 @@
-from config import llm_config, create_user_proxy_agent, create_assistant_agent
-import autogen
 import json
+
+import autogen
+
+from config import create_assistant_agent, create_user_proxy_agent, llm_config
 
 
 def identify_the_industry(input_text: str):

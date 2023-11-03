@@ -1,10 +1,10 @@
-import sys
 import io
+import sys
+
 import chats.industry_identifier as industry_identifier
 import chats.scoring_formulas as scoring_formulas
 import chats.summarizer as summarizer
-import autogen
-from config import text, create_user_proxy_agent, create_assistant_agent
+from config import create_user_proxy_agent, text
 
 
 def main(input_text: str):

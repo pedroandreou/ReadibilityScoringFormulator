@@ -1,10 +1,4 @@
-import autogen
-from config import (
-    llm_config,
-    config_list,
-    create_user_proxy_agent,
-    create_assistant_agent,
-)
+from config import config_list, create_assistant_agent, create_user_proxy_agent
 
 
 def ask_summary_generator(message):
