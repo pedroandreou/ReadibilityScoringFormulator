@@ -41,16 +41,26 @@ def prepare_scoring_formulas(industry):
         groupchat = autogen.GroupChat(agents=[gfi_assistant], messages=[], max_round=20)
 
     elif industry == "military and governmental agencies":
-        # TODO: NEED TO ADD THE REMAINING INDUSTRIES' SCORING FORMULAS
-        raise NotImplementedError(
-            "The scoring formulas for the Military and Governmental Agencies industry have not been implemented yet."
+        Automated_readability_index_expert = autogen.AssistantAgent(
+            name="Automated_readability_index_expert",
+            llm_config=llm_config,
+            system_message="""You are a very smart expert in calculating the Automated readability Index from a given text. \
+The automated readability index (ARI) is a readability test for English texts, designed to gauge the understandability of a text.\
+
+        """
         )
+        groupchat = autogen.GroupChat(agents=[Automated_readability_index_expert], messages=[], max_round=20)
 
     elif industry == "publishing":
-        # TODO: NEED TO ADD THE REMAINING INDUSTRIES' SCORING FORMULAS
-        raise NotImplementedError(
-            "The scoring formulas for the Publishing industry have not been implemented yet."
+        Coleman_Liau_index_expert = autogen.AssistantAgent(
+            name="Coleman_Liau_index_expert",
+            llm_config=llm_config,
+            system_message="""You are a very smart expert in calculating the Coleman-Liau Index from a given text. \
+Coleman–Liau relies on characters instead of syllables per word. Its Formula is CLI= 0.0588*L - 0.296*S-15.8. \
+where L is the average number of letters per 100 words and S is the average number of sentences per 100 words.
+        """
         )
+        groupchat = autogen.GroupChat(agents=[Coleman_Liau_index_expert], messages=[], max_round=20)
 
     else:
         raise ValueError(
