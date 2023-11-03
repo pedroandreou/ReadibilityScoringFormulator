@@ -3,7 +3,7 @@ import autogen
 import json
 
 
-def identify_the_industry():
+def identify_the_industry(in_text=None):
     autogen.ChatCompletion.start_logging()
 
     student = create_user_proxy_agent(
@@ -17,10 +17,17 @@ def identify_the_industry():
         llm_config=llm_config,
     )
 
-    task = f"""A human admin. Interact with the Industry Identifier to identify the industry of the given text.
-The text is provided delimited by three backticks.
+    if in_text:
+        task = f"""A human admin. Interact with the Industry Identifier to identify the industry of the given text.
+    The text is provided delimited by three backticks.
 
-```{text}```"""
+    ```{in_text}```"""
+    else:
+        task = f"""A human admin. Interact with the Industry Identifier to identify the industry of the given text.
+    The text is provided delimited by three backticks.
+
+    ```{text}```"""
+        
     student.initiate_chat(
         industry_identifier_assistant,
         message=task,
