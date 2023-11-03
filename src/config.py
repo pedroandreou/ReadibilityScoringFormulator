@@ -59,7 +59,6 @@ def create_user_proxy_agent(
     human_input_mode="NEVER",
     max_consecutive_auto_reply=0,
     code_execution_config=False,
-    llm_config=llm_config,
 ):
     return autogen.UserProxyAgent(
         name=name,
@@ -69,7 +68,6 @@ def create_user_proxy_agent(
         .rstrip()
         .endswith("TERMINATE"),
         code_execution_config=code_execution_config,
-        llm_config=llm_config,
     )
 
 
