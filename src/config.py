@@ -6,7 +6,14 @@ import openai
 config_list = autogen.config_list_from_json(
     "OAI_CONFIG_LIST",
     filter_dict={
-        "model": ["gpt-4", "gpt-4-0314", "gpt4", "gpt-4-32k", "gpt-4-32k-0314", "gpt-4-32k-v0314"],
+        "model": [
+            "gpt-4",
+            "gpt-4-0314",
+            "gpt4",
+            "gpt-4-32k",
+            "gpt-4-32k-0314",
+            "gpt-4-32k-v0314",
+        ],
     },
 )
 
@@ -15,7 +22,7 @@ llm_config = {
     "request_timeout": 600,
     "seed": 42,
     "config_list": config_list,
-    "temperature": 0
+    "temperature": 0,
 }
 
 text = """
@@ -47,12 +54,20 @@ smart because Betsy didn’t just memorize words she could recognize.
 """
 
 
-def create_user_proxy_agent(name, human_input_mode="NEVER", max_consecutive_auto_reply=0, code_execution_config=False, llm_config=llm_config):
+def create_user_proxy_agent(
+    name,
+    human_input_mode="NEVER",
+    max_consecutive_auto_reply=0,
+    code_execution_config=False,
+    llm_config=llm_config,
+):
     return autogen.UserProxyAgent(
         name=name,
         human_input_mode=human_input_mode,
         max_consecutive_auto_reply=max_consecutive_auto_reply,
-        is_termination_msg=lambda x: x.get("content", "").rstrip().endswith("TERMINATE"),
+        is_termination_msg=lambda x: x.get("content", "")
+        .rstrip()
+        .endswith("TERMINATE"),
         code_execution_config=code_execution_config,
         llm_config=llm_config,
     )
@@ -60,7 +75,5 @@ def create_user_proxy_agent(name, human_input_mode="NEVER", max_consecutive_auto
 
 def create_assistant_agent(name, system_message, llm_config=llm_config):
     return autogen.AssistantAgent(
-        name=name,
-        system_message=system_message,
-        llm_config=llm_config
+        name=name, system_message=system_message, llm_config=llm_config
     )
