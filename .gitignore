@@ -1,0 +1,14 @@
+# Windows Virtual Environment
+.venv
+
+# Environment variables
+OAI_CONFIG_LIST
+
+# IDEs
+.vscode
+
+# Python
+**/__pycache__
+
+# Autogen
+**/.cache
