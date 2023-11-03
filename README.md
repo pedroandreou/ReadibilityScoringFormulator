@@ -1,5 +1,9 @@
 # The Readability Scoring Formulator
 ## Description
+<p align="center">
+  <img src="./diagram.png" width="800"/>
+  <br><br>
+</p>
 In a world inundated with textual information from diverse sources, ranging from research papers and articles to social media posts, the need for efficient, accurate, and automated text processing has never been more pronounced.
 
 Readability Scoring Formulator is an innovative AI solution that revolutionizes the way text data is processed. It tackles the time-consuming and challenging task of classifying text into the appropriate industries, creating concise summaries, and assessing readability.
@@ -15,14 +19,6 @@ Readability Scoring Formulator is an innovative AI solution that revolutionizes 
 <br>
 
 - Readability Assessment: Assessing the readability of text is inherently subjective, and individual preferences and backgrounds play a significant role. AutoGen's advanced AI agents solve this challenge by providing readability scores tailored to the specific audience, enhancing the user's comprehension and engagement.
-
-
-## Diagram
-<p align="center">
-  <br><br>
-  <img src="./diagram.png" width="800"/>
-  <br><br>
-</p>
 
 
 ### Make a copy of the example OAI_CONFIG_LIST file for adding your OPENAI API key
