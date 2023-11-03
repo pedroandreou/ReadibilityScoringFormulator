@@ -62,9 +62,8 @@ def create_user_proxy_agent(
         name=name,
         human_input_mode=human_input_mode,
         max_consecutive_auto_reply=max_consecutive_auto_reply,
-        is_termination_msg=lambda x: x.get("content", "")
-        .rstrip()
-        .endswith("TERMINATE"),
+        is_termination_msg=lambda x: "content" in x and x["content"] is not None and x["content"].rstrip().endswith(
+            "TERMINATE"),
         code_execution_config=code_execution_config,
         system_message="""Reply TERMINATE if the task has been solved at full satisfaction.
 Otherwise, reply CONTINUE, or the reason why the task is not solved yet.""",
@@ -72,7 +71,12 @@ Otherwise, reply CONTINUE, or the reason why the task is not solved yet.""",
     )
 
 
-def create_assistant_agent(name, system_message, llm_config=llm_config):
-    return autogen.AssistantAgent(
+def create_assistant_agent(name, system_message=None, llm_config=llm_config):
+    if system_message:
+        return autogen.AssistantAgent(
         name=name, system_message=system_message, llm_config=llm_config
     )
+    else:
+        return autogen.AssistantAgent(
+            name=name, llm_config=llm_config
+        )

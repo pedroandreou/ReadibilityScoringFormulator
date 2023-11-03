@@ -67,9 +67,6 @@ def generate_summary(input_text: str, easy_summary: bool = True):
     user_proxy = create_user_proxy_agent(
         name="user_proxy",
         max_consecutive_auto_reply=5,
-        is_termination_msg=lambda x: "content" in x
-        and x["content"] is not None
-        and x["content"].rstrip().endswith("TERMINATE"),
         function_map={
             "ask_summary_generator": ask_summary_generator,
             "ask_simplification_expert": ask_simplification_expert,
@@ -129,7 +126,7 @@ def generate_summary(input_text: str, easy_summary: bool = True):
                     },
                 },
             ],
-        },
+        }
     )
 
     user_proxy.initiate_chat(
@@ -137,5 +134,4 @@ def generate_summary(input_text: str, easy_summary: bool = True):
         message=task,
     )
     generated_summary = user_proxy.last_message()["content"].replace("TERMINATE", "")
-
     return generated_summary
